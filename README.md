@@ -6,6 +6,8 @@
 
 Experience-to-offer diagnostics for an evidence-bound one-person business.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-D89808.svg)](LICENSE)
+
 </div>
 
 > **定位**：面向希望把个人经验转化为咨询、课程、工作坊、具体服务或工具包的人，生成经验资产、付费客户、产品优先级和行动路径诊断。<br>
@@ -21,7 +23,7 @@ Experience-to-offer diagnostics for an evidence-bound one-person business.
 - [适用场景](#适用场景)
 - [输入与输出](#输入与输出)
 - [隐私与边界](#隐私与边界)
-- [许可证状态](#许可证状态)
+- [开源许可证](#开源许可证)
 
 ## 为什么需要它
 
@@ -168,9 +170,11 @@ python3 -m unittest discover -s tests -v
 
 提交问题时请使用虚构或充分脱敏的数据复现，不要上传真实客户材料、个人简历、合同、私聊和未经授权的品牌资产。
 
-## 许可证状态
+## 开源许可证
 
-本仓库当前未授予开源许可证。公开可见不等于授权复制、修改、分发或商用。GULIAI Logo 的品牌权利亦未授权。详见 [`NOTICE.md`](NOTICE.md)。
+本仓库采用 [MIT License](LICENSE) 开源。你可以使用、复制、修改、分发和商用，但必须保留原始版权声明和许可证文本。
+
+MIT 许可证不授予 GULIAI 名称及 Logo 的商标权，也不得暗示修改版或衍生产品得到 GULIAI 官方认可、认证或背书。HarmonyOS Sans 字体未包含在仓库中，使用时遵循其独立许可。详见 [`NOTICE.md`](NOTICE.md) 与 [`assets/FONT-NOTICE.md`](assets/FONT-NOTICE.md)。
 
 ---
 
