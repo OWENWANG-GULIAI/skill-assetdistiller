@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GULIAI Experience Asset Diagnostic v6",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode", "meta", "executive_summary", "top_assets", "moat_analysis",
+    "customer_segments", "monetization_offers", "primary_offer",
+    "expert_interview", "roadmap", "evidence_ledger"
+  ],
+  "properties": {
+    "mode": {"type": "string", "enum": ["preliminary", "interview_enriched", "evidence_verified"]},
+    "meta": {"$ref": "#/$defs/meta"},
+    "executive_summary": {"$ref": "#/$defs/executive_summary"},
+    "top_assets": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/asset"}},
+    "moat_analysis": {"$ref": "#/$defs/moat_analysis"},
+    "customer_segments": {"type": "array", "minItems": 2, "maxItems": 4, "items": {"$ref": "#/$defs/customer_segment"}},
+    "monetization_offers": {"type": "array", "minItems": 3, "maxItems": 5, "items": {"$ref": "#/$defs/offer"}},
+    "primary_offer": {"$ref": "#/$defs/primary_offer"},
+    "expert_interview": {"$ref": "#/$defs/expert_interview"},
+    "roadmap": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/roadmap_stage"}},
+    "evidence_ledger": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence_entry"}}
+  },
+  "$defs": {
+    "meta": {
+      "type": "object",
+      "required": ["name", "date", "report_id", "keywords"],
+      "properties": {
+        "name": {"type": "string"},
+        "date": {"type": "string", "format": "date"},
+        "report_id": {"type": "string"},
+        "keywords": {"type": "array", "minItems": 3, "maxItems": 6, "items": {"type": "string"}}
+      }
+    },
+    "monetization_origin": {
+      "type": "object",
+      "required": ["what_i_have", "what_others_need", "what_i_want_long_term", "intersection"],
+      "properties": {
+        "what_i_have": {"type": "string"},
+        "what_others_need": {"type": "string"},
+        "what_i_want_long_term": {"type": "string"},
+        "intersection": {"type": "string"}
+      }
+    },
+    "executive_summary": {
+      "type": "object",
+      "required": [
+        "core_judgment", "best_customer", "best_offer", "opportunity_level",
+        "main_risk", "confidence_boundary", "monetization_origin"
+      ],
+      "properties": {
+        "core_judgment": {"type": "string"},
+        "best_customer": {"type": "string"},
+        "best_offer": {"type": "string"},
+        "opportunity_level": {"type": "string"},
+        "main_risk": {"type": "string"},
+        "confidence_boundary": {"type": "string"},
+        "monetization_origin": {"$ref": "#/$defs/monetization_origin"}
+      }
+    },
+    "asset_score": {
+      "type": "object",
+      "required": ["problem_value", "result_evidence", "moat", "portability", "product_readiness"],
+      "properties": {
+        "problem_value": {"type": ["integer", "null"], "minimum": 0, "maximum": 25},
+        "result_evidence": {"type": ["integer", "null"], "minimum": 0, "maximum": 20},
+        "moat": {"type": ["integer", "null"], "minimum": 0, "maximum": 20},
+        "portability": {"type": ["integer", "null"], "minimum": 0, "maximum": 15},
+        "product_readiness": {"type": ["integer", "null"], "minimum": 0, "maximum": 20}
+      }
+    },
+    "asset": {
+      "type": "object",
+      "required": [
+        "rank", "name", "source_experience", "scene", "challenge", "personal_role",
+        "high_value_problem", "key_decision", "counterintuitive_insight", "solution_mechanism",
+        "deliverables", "result_evidence", "portability", "moat", "score_breakdown",
+        "score_total", "maturity", "can_sell", "cannot_promise", "evidence_gap", "evidence_links"
+      ],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1, "maximum": 3},
+        "name": {"type": "string"},
+        "source_experience": {"type": "string"},
+        "scene": {"type": "string"},
+        "challenge": {"type": "string"},
+        "personal_role": {"type": "string"},
+        "high_value_problem": {"type": "string"},
+        "key_decision": {"type": "string"},
+        "counterintuitive_insight": {"type": "string"},
+        "solution_mechanism": {"type": "string"},
+        "deliverables": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "result_evidence": {"type": "string"},
+        "portability": {"type": "string"},
+        "moat": {"type": "string"},
+        "score_breakdown": {"$ref": "#/$defs/asset_score"},
+        "score_total": {"type": ["integer", "null"], "minimum": 0, "maximum": 100},
+        "maturity": {"type": "string", "enum": ["经验原料", "可迁移能力", "可试卖资产", "已验证资产"]},
+        "can_sell": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "cannot_promise": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "evidence_gap": {"type": "string"},
+        "evidence_links": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "moat_dimension": {
+      "type": "object",
+      "required": ["name", "level", "evidence", "limitation"],
+      "properties": {
+        "name": {"type": "string"},
+        "level": {"type": "integer", "minimum": 1, "maximum": 5},
+        "evidence": {"type": "string"},
+        "limitation": {"type": "string"}
+      }
+    },
+    "moat_analysis": {
+      "type": "object",
+      "required": ["conclusion", "dimensions", "portable_assets", "platform_assets"],
+      "properties": {
+        "conclusion": {"type": "string"},
+        "dimensions": {"type": "array", "minItems": 5, "maxItems": 7, "items": {"$ref": "#/$defs/moat_dimension"}},
+        "portable_assets": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "platform_assets": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "customer_segment": {
+      "type": "object",
+      "required": [
+        "rank", "name", "people", "trigger", "surface_problem", "deep_problem",
+        "cost_of_inaction", "current_alternative", "user", "buyer", "approver",
+        "buying_reason", "matching_asset", "confidence", "urgency_score", "payment_score"
+      ],
+      "properties": {
+        "rank": {"type": "integer"},
+        "name": {"type": "string"},
+        "people": {"type": "string"},
+        "trigger": {"type": "string"},
+        "surface_problem": {"type": "string"},
+        "deep_problem": {"type": "string"},
+        "cost_of_inaction": {"type": "string"},
+        "current_alternative": {"type": "string"},
+        "user": {"type": "string"},
+        "buyer": {"type": "string"},
+        "approver": {"type": "string"},
+        "buying_reason": {"type": "string"},
+        "matching_asset": {"type": "string"},
+        "confidence": {"type": "string", "enum": ["高", "中", "低"]},
+        "urgency_score": {"type": "integer", "minimum": 1, "maximum": 5},
+        "payment_score": {"type": "integer", "minimum": 1, "maximum": 5}
+      }
+    },
+    "product_score": {
+      "type": "object",
+      "required": ["customer_urgency", "experience_fit", "delivery_control", "buyer_clarity", "low_cost_validation"],
+      "properties": {
+        "customer_urgency": {"type": "integer", "minimum": 0, "maximum": 25},
+        "experience_fit": {"type": "integer", "minimum": 0, "maximum": 25},
+        "delivery_control": {"type": "integer", "minimum": 0, "maximum": 20},
+        "buyer_clarity": {"type": "integer", "minimum": 0, "maximum": 15},
+        "low_cost_validation": {"type": "integer", "minimum": 0, "maximum": 15}
+      }
+    },
+    "offer": {
+      "type": "object",
+      "required": [
+        "rank", "name", "category", "audience", "trigger", "paid_problem", "cost_of_inaction",
+        "mechanism", "ai_role", "deliverables", "scope_excluded", "price_test", "pricing_basis",
+        "high_ticket_condition", "score_breakdown", "score_total", "priority", "feasibility",
+        "evidence_links", "validation_action", "recommendation"
+      ],
+      "properties": {
+        "rank": {"type": "integer"},
+        "name": {"type": "string"},
+        "category": {"type": "string"},
+        "audience": {"type": "string"},
+        "trigger": {"type": "string"},
+        "paid_problem": {"type": "string"},
+        "cost_of_inaction": {"type": "string"},
+        "mechanism": {"type": "string"},
+        "ai_role": {"type": "string"},
+        "deliverables": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "scope_excluded": {"type": "string"},
+        "price_test": {"type": "string"},
+        "pricing_basis": {"type": "string"},
+        "high_ticket_condition": {"type": "string"},
+        "score_breakdown": {"$ref": "#/$defs/product_score"},
+        "score_total": {"type": "integer", "minimum": 0, "maximum": 100},
+        "priority": {"type": "string", "enum": ["P1", "P2", "P3"]},
+        "feasibility": {"type": "string", "enum": ["可直接提供", "建议小范围试点", "需补能力或证据", "暂不建议"]},
+        "evidence_links": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "validation_action": {"type": "string"},
+        "recommendation": {"type": "string"}
+      }
+    },
+    "price_stage": {
+      "type": "object",
+      "required": ["stage", "price", "evidence_required"],
+      "properties": {
+        "stage": {"type": "string"},
+        "price": {"type": "string"},
+        "evidence_required": {"type": "string"}
+      }
+    },
+    "primary_offer": {
+      "type": "object",
+      "required": [
+        "offer_name", "positioning", "why_first", "customer_inputs", "steps",
+        "deliverables", "scope_excluded", "price_ladder", "success_signal", "stop_condition", "next_upgrade"
+      ],
+      "properties": {
+        "offer_name": {"type": "string"},
+        "positioning": {"type": "string"},
+        "why_first": {"type": "string"},
+        "customer_inputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "steps": {"type": "array", "minItems": 3, "maxItems": 6, "items": {"type": "string"}},
+        "deliverables": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+        "scope_excluded": {"type": "string"},
+        "price_ladder": {"type": "array", "minItems": 2, "maxItems": 4, "items": {"$ref": "#/$defs/price_stage"}},
+        "success_signal": {"type": "string"},
+        "stop_condition": {"type": "string"},
+        "next_upgrade": {"type": "string"}
+      }
+    },
+    "interview_question": {
+      "type": "object",
+      "required": ["question", "why_ask", "requested_evidence", "decision_affected", "fallback_assumption"],
+      "properties": {
+        "question": {"type": "string"},
+        "why_ask": {"type": "string"},
+        "requested_evidence": {"type": "string"},
+        "decision_affected": {"type": "string"},
+        "fallback_assumption": {"type": "string"}
+      }
+    },
+    "expert_interview": {
+      "type": "object",
+      "required": ["status", "needs_interview", "thickness_note", "questions"],
+      "properties": {
+        "status": {"type": "string", "enum": ["pending", "answered", "declined"]},
+        "needs_interview": {"type": "boolean"},
+        "thickness_note": {"type": "string"},
+        "questions": {"type": "array", "minItems": 2, "maxItems": 3, "items": {"$ref": "#/$defs/interview_question"}}
+      }
+    },
+    "roadmap_stage": {
+      "type": "object",
+      "required": ["stage", "entry_condition", "objective", "actions", "outputs", "decision_gate", "risk"],
+      "properties": {
+        "stage": {"type": "string"},
+        "entry_condition": {"type": "string"},
+        "objective": {"type": "string"},
+        "actions": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+        "outputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "decision_gate": {"type": "string"},
+        "risk": {"type": "string"}
+      }
+    },
+    "evidence_entry": {
+      "type": "object",
+      "required": ["id", "claim", "classification", "source", "status", "authorization", "limitation"],
+      "properties": {
+        "id": {"type": "string"},
+        "claim": {"type": "string"},
+        "classification": {"type": "string", "enum": ["用户事实", "模型推断", "待验证假设", "行动建议"]},
+        "source": {"type": "string"},
+        "status": {"type": "string"},
+        "authorization": {"type": "string"},
+        "limitation": {"type": "string"}
+      }
+    }
+  }
+}
