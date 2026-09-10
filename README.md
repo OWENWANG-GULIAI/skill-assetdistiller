@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/OWENWANG-GULIAI">
+    <img src="https://raw.githubusercontent.com/OWENWANG-GULIAI/ppt-page-image-director/main/assets/guliai-logo-on-light.png" alt="GULIAI" width="300">
+  </a>
+</p>
+
 <div align="center">
 
 # Skill-AssetDistiller｜经验资产提炼器
